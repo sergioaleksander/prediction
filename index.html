@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redireccionando...</title>
+    <script>
+        fetch('https://script.google.com/macros/s/AKfycbzi8JmyDUvEn_POL0wttpRobyC2-9NSafKTx4jJx7hA2N6rePG6gbn5e5epJ85S39BgBA/exec')
+            .then(response => response.json())
+            .then(data => {
+                if (data.videoURL) {
+                    window.location.href = data.videoURL;
+                } else {
+                    document.body.innerHTML = "<h1>Error: No se encontró el video</h1>";
+                }
+            })
+            .catch(error => {
+                console.error("Error al obtener la URL:", error);
+                document.body.innerHTML = "<h1>Error al obtener la URL</h1>";
+            });
+    </script>
+</head>
+<body>
+    <h1>Redireccionando...</h1>
+</body>
+</html>
