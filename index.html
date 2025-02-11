@@ -3,27 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redireccionando...</title>
+    <title>Acceso al video</title>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.body.innerHTML = "<h1>Redireccionando...</h1>"; // Agrega el texto solo una vez
+        function verificarContraseña() {
+            let contraseñaIngresada = document.getElementById("password").value;
+            let contraseñaCorrecta = "prueba"; // 🔹 Cambia esto por la contraseña real
 
-            fetch('https://script.google.com/macros/s/AKfycbzi8JmyDUvEn_POL0wttpRobyC2-9NSafKTx4jJx7hA2N6rePG6gbn5e5epJ85S39BgBA/exec')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.videoURL) {
-                        window.location.replace(data.videoURL); // Redirección sin historial
-                    } else {
-                        document.body.innerHTML = "<h1>Error: No se encontró el video</h1>";
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al obtener la URL:", error);
-                    document.body.innerHTML = "<h1>Error al obtener la URL</h1>";
-                });
-        });
+            if (contraseñaIngresada === contraseñaCorrecta) {
+                document.getElementById("errorMensaje").style.display = "none"; // Oculta el mensaje de error
+                document.getElementById("formulario").style.display = "none"; // Oculta el formulario
+                document.getElementById("mensaje").innerText = "Redireccionando..."; // Muestra el mensaje
+
+                // Obtener la URL del video
+                fetch('https://script.google.com/macros/s/AKfycbzi8JmyDUvEn_POL0wttpRobyC2-9NSafKTx4jJx7hA2N6rePG6gbn5e5epJ85S39BgBA/exec')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.videoURL) {
+                            window.location.replace(data.videoURL); // Redirección sin guardar en historial
+                        } else {
+                            document.body.innerHTML = "<h1>Error: No se encontró el video</h1>";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener la URL:", error);
+                        document.body.innerHTML = "<h1>Error al obtener la URL</h1>";
+                    });
+            } else {
+                document.getElementById("errorMensaje").style.display = "block"; // Muestra el error
+            }
+        }
     </script>
 </head>
 <body>
+    <h1>Me he metido en tu mente:</h1>
+    <div id="formulario">
+        <input type="password" id="password" placeholder="Introduce la contraseña">
+        <button onclick="verificarContraseña()">Ir al vídeo</button>
+    </div>
+    <p id="errorMensaje" style="color: red; display: none;">❌ Contraseña incorrecta</p>
+    <p id="mensaje"></p>
 </body>
 </html>
