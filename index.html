@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso al video</title>
+</head>
+<body>
+    <h1>Me he metido en tu mente:</h1>
+    <div id="formulario">
+        <input type="password" id="password" placeholder="Introduce la contraseña">
+        <button onclick="verificarContraseña()">Ir al vídeo</button>
+    </div>
+    <p id="errorMensaje" style="color: red; display: none;">❌ Contraseña incorrecta</p>
+    <p id="mensaje"></p>
+
     <script>
         function verificarContraseña() {
             let contraseñaIngresada = document.getElementById("password").value;
             let contraseñaCorrecta = "prueba"; // 🔹 Cambia esto por la contraseña real
 
             if (contraseñaIngresada === contraseñaCorrecta) {
-                document.getElementById("errorMensaje").style.display = "none"; // Oculta el mensaje de error
+                document.getElementById("errorMensaje").style.display = "none"; // Oculta el error
                 document.getElementById("formulario").style.display = "none"; // Oculta el formulario
-                document.getElementById("mensaje").innerText = "Redireccionando..."; // Muestra el mensaje
+                document.getElementById("mensaje").innerText = "Redireccionando..."; // Muestra mensaje
 
-                // Obtener la URL del video
+                // 🔹 Ahora SÍ espera la contraseña antes de hacer fetch()
                 fetch('https://script.google.com/macros/s/AKfycbzi8JmyDUvEn_POL0wttpRobyC2-9NSafKTx4jJx7hA2N6rePG6gbn5e5epJ85S39BgBA/exec')
                     .then(response => response.json())
                     .then(data => {
@@ -33,14 +43,5 @@
             }
         }
     </script>
-</head>
-<body>
-    <h1>Me he metido en tu mente:</h1>
-    <div id="formulario">
-        <input type="password" id="password" placeholder="Introduce la contraseña">
-        <button onclick="verificarContraseña()">Ir al vídeo</button>
-    </div>
-    <p id="errorMensaje" style="color: red; display: none;">❌ Contraseña incorrecta</p>
-    <p id="mensaje"></p>
 </body>
 </html>
