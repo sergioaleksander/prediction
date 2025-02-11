@@ -5,27 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redireccionando...</title>
     <script>
-        fetch('https://script.google.com/macros/s/AKfycbzi8JmyDUvEn_POL0wttpRobyC2-9NSafKTx4jJx7hA2N6rePG6gbn5e5epJ85S39BgBA/exec')
-            .then(response => response.json())
-            .then(data => {
-                if (data.videoURL) {
-                    window.location.replace(data.videoURL); // 🔹 Redirección sin historial
-                } else {
-                    document.body.innerHTML = "<h1>Error: No se encontró el video</h1>";
-                }
-            })
-            .catch(error => {
-                console.error("Error al obtener la URL:", error);
-                document.body.innerHTML = "<h1>Error al obtener la URL</h1>";
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.innerHTML = "<h1>Redireccionando...</h1>"; // Agrega el texto solo una vez
+
+            fetch('https://script.google.com/macros/s/AKfycbzi8JmyDUvEn_POL0wttpRobyC2-9NSafKTx4jJx7hA2N6rePG6gbn5e5epJ85S39BgBA/exec')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.videoURL) {
+                        window.location.replace(data.videoURL); // Redirección sin historial
+                    } else {
+                        document.body.innerHTML = "<h1>Error: No se encontró el video</h1>";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al obtener la URL:", error);
+                    document.body.innerHTML = "<h1>Error al obtener la URL</h1>";
+                });
+        });
     </script>
 </head>
 <body>
-    <h1>Redireccionando...</h1>
-</body>
-</html>
-
-<body>
-    <h1>Redireccionando...</h1>
 </body>
 </html>
