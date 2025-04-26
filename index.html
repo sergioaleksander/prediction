@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso al video</title>
+    <title>Acceso a Predicción</title>
 </head>
 <body>
     <h1>Acceso restringido</h1>
     <div id="formulario">
         <input type="password" id="password" placeholder="Introduce la contraseña">
-        <button onclick="verificarContraseña()">Ir al vídeo</button>
+        <button onclick="verificarContraseña()">Acceder</button>
     </div>
     <p id="errorMensaje" style="color: red; display: none;">❌ Contraseña incorrecta</p>
     <p id="mensaje"></p>
@@ -17,12 +17,12 @@
     <script>
         function verificarContraseña() {
             let contraseñaIngresada = document.getElementById("password").value;
-            let contraseñaCorrecta = "casatalent"; // 🔹 Cambia esto por la contraseña real
+            let contraseñaCorrecta = "animus13"; // 🔹 Cambia esto por la contraseña real
 
             if (contraseñaIngresada === contraseñaCorrecta) {
                 document.getElementById("errorMensaje").style.display = "none"; // Oculta el error
                 document.getElementById("formulario").style.display = "none"; // Oculta el formulario
-                document.getElementById("mensaje").innerText = "Redireccionando..."; // Muestra mensaje
+                document.getElementById("mensaje").innerText = "Comprobando contraseña..."; // Muestra mensaje
 
                 // 🔹 Ahora SÍ espera la contraseña antes de hacer fetch()
                 fetch('https://script.google.com/macros/s/AKfycbzi8JmyDUvEn_POL0wttpRobyC2-9NSafKTx4jJx7hA2N6rePG6gbn5e5epJ85S39BgBA/exec')
@@ -31,7 +31,7 @@
                         if (data.videoURL) {
                             window.location.replace(data.videoURL); // Redirección sin guardar en historial
                         } else {
-                            document.body.innerHTML = "<h1>Error: No se encontró el video</h1>";
+                            document.body.innerHTML = "<h1>Error: No se encontró la dirección</h1>";
                         }
                     })
                     .catch(error => {
